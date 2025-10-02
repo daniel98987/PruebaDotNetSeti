@@ -8,13 +8,15 @@ namespace TranslatorJsonAndXml.Repositories
 {
     public class TranslatorRepository : ITranslatorRepository
     {
- 
 
-        public TranslatorRepository() 
+        private readonly HttpClient _httpClient;
+        public TranslatorRepository(HttpClient httpClient)
         {
+            _httpClient = httpClient;
+
         }
 
-        public Task<string> EnviarPedidoAsync(EnviarPedido pedido)
+        public async  Task<string> EnviarPedidoAsync(EnviarPedido pedido)
         {
             var xmlRequest = $@"
         <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:env='http://WSDLs/EnvioPedidos/EnvioPedidosAcme'>
@@ -32,8 +34,10 @@ namespace TranslatorJsonAndXml.Repositories
                 </env:EnvioPedidoAcme>
             </soapenv:Body>
         </soapenv:Envelope>";
+            var content = new StringContent(xmlRequest, Encoding.UTF8, "text/xml");
 
-            return Task.FromResult(xmlRequest.Trim());
+            var response = await _httpClient.PostAsync("https://pruebanetjsontoxml.free.beeceptor.com/serviceXml", content);
+            return await response.Content.ReadAsStringAsync();
         }
 
         public Task<PedidoResponse> EnviarPedidoRespuesta(string request)

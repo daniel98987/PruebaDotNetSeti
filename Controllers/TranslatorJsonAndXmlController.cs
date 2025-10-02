@@ -21,24 +21,15 @@ namespace TranslatorJsonAndXml.Controllers
         [HttpPost("envioPedidos")]
         public async Task<IActionResult> EnviarPedido([FromBody] EnviarPedido request)
         {
-            var response = await _translatorService.TranslateJsonToXml(request);
-            return Ok(response);
+            var xmlResponse = await _translatorService.TranslateJsonToXml(request);
+
+            // 2. Transformar respuesta XML → JSON
+            var jsonResponse = await _translatorService.TranslateXmlToJson(xmlResponse);
+
+            // 3. Responder en formato JSON
+            return Ok(jsonResponse);
         }
-        [HttpPost("enviarPedidoRespuesta")]
-        [Consumes("application/xml", "text/xml")] // acepta ambos tipos de SOAP
-        public async Task<IActionResult> EnviarPedidoRespuesta()
-        {
-            // Leer el XML crudo
-            using var reader = new StreamReader(Request.Body);
-            string xmlBody = await reader.ReadToEndAsync();
-
-            // Llamar a tu servicio para convertirlo a JSON
-            var response = await _translatorService.TranslateXmlToJson(xmlBody);
-
-
-            return Ok(response);
-        }
-
+       
 
 
     }

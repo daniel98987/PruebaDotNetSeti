@@ -1,29 +1,33 @@
-using TranslatorJsonAndXml.Repositories;
+﻿using TranslatorJsonAndXml.Repositories;
 using TranslatorJsonAndXml.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Repositorios y servicios
-builder.Services.AddTransient<ITranslatorRepository, TranslatorRepository>();
-builder.Services.AddScoped<TranslatorService>();
+// Controllers + XML support
 builder.Services.AddControllers()
-    .AddXmlSerializerFormatters(); // <- habilita que ASP.NET Core entienda application/xml
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    .AddXmlSerializerFormatters();
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// ✅ Registro de HttpClient para los servicios/repositorios
+builder.Services.AddHttpClient<ITranslatorRepository, TranslatorRepository>();
+builder.Services.AddScoped<TranslatorService>();
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseHttpsRedirection();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
