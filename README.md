@@ -5,8 +5,8 @@ Este proyecto es una **API en ASP.NET Core 8** diseñada para traducir mensajes 
 SWAGGER 
 http://localhost:8080/swagger/index.html
 
-SOLUCIÓN PUNTO B (POST)
-[http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos](http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos
+SOLUCIÓN PUNTO B y C (POST)
+http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos
 )
 body - json
 {
@@ -19,24 +19,7 @@ body - json
 		"direccion": "CR 72B 45 12 APT 301"
 	}
 }
-SOLUCIÓN PUNTO C
-[[http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos]()](http://localhost:8080/api/TranslatorJsonAndXml/enviarPedidoRespuesta)
-HEADERS Content-Type application/xml
-        Accept application/json
-BODY - RAW - XML 
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:env="http://WSDLs/EnvioPedidos/EnvioPedidosAcme">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <env:EnvioPedidoAcmeResponse>
-         <EnvioPedidoResponse>
-            <!--Optional:-->
-            <Codigo>80375472</Codigo>
-            <!--Optional:-->
-            <Mensaje>Entregado exitosamente al cliente</Mensaje>
-         </EnvioPedidoResponse>
-      </env:EnvioPedidoAcmeResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
+
 
 ---
 
@@ -51,7 +34,6 @@ BODY - RAW - XML
 ---
 
 ## 📂 Estructura del proyecto
-
 TranslatorJsonAndXml/
 │
 ├── Controllers/
@@ -82,9 +64,7 @@ TranslatorJsonAndXml/
 ├── .dockerignore # Exclusiones para Docker
 ├── .gitignore # Exclusiones para Git
 ├── appsettings.json # Configuración de la API
-├── Program.cs # Punto de entrada del proyecto
 └── TranslatorJsonAndXml.http # Archivo de pruebas HTTP
-
 ## Configuración para docker Puerto 8080
 ## 🐳 Docker
 
