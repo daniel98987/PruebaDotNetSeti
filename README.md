@@ -37,36 +37,34 @@ body - json
 TranslatorJsonAndXml/
 │
 ├── Controllers/
-│   └── TranslatorJsonAndXmlController.cs   # Controlador principal con endpoints
+│ └── TranslatorJsonAndXmlController.cs # Controlador principal con endpoints
 │
 ├── Middleware/
-│   └── ErrorHandlingMiddleware.cs          # Middleware global para manejo de errores
+│ └── ErrorHandlingMiddleware.cs # Middleware global para manejo de errores
 │
 ├── Models/
-│   ├── Errors/
-│   │   └── ApiError.cs                     # Clase estándar para respuestas de error
-│   ├── EnviarPedido.cs                     # Modelo de entrada JSON → XML
-│   ├── EnviarPedidoResponse.cs             # Modelo de salida XML → JSON
-│   ├── Envio.cs                            # Submodelo para respuesta
-│   └── PedidoRequest.cs                    # Detalle de pedido
+│ ├── Errors/
+│ │ └── ApiError.cs # Clase estándar para respuestas de error
+│ ├── EnviarPedido.cs # Modelo de entrada JSON → XML
+│ ├── EnviarPedidoResponse.cs # Modelo de salida XML → JSON
+│ ├── Envio.cs # Submodelo para respuesta
+│ └── PedidoRequest.cs # Detalle de pedido
 │
 ├── Repositories/
-│   ├── ITranslatorRepository.cs            # Interfaz del repositorio
-│   └── TranslatorRepository.cs             # Implementación del patrón Repository
+│ ├── ITranslatorRepository.cs # Interfaz del repositorio
+│ └── TranslatorRepository.cs # Implementación del patrón Repository
 │
 ├── Services/
-│   └── TranslatorService.cs                # Lógica de negocio que usa el repositorio
+│ └── TranslatorService.cs # Lógica de negocio que usa el repositorio
 │
 ├── Properties/
-│   └── launchSettings.json                 # Configuración local (puertos y perfiles)
+│ └── launchSettings.json # Configuración local (puertos y perfiles)
 │
-├── Dockerfile                              # Configuración multi-stage build
-├── .dockerignore                           # Exclusiones para Docker
-├── .gitignore                              # Exclusiones para Git
-├── appsettings.json                        # Configuración de la API
-└── TranslatorJsonAndXml.http               # Archivo de pruebas HTTP
-
-
+├── Dockerfile # Configuración multi-stage build
+├── .dockerignore # Exclusiones para Docker
+├── .gitignore # Exclusiones para Git
+├── appsettings.json # Configuración de la API
+└── TranslatorJsonAndXml.http # Archivo de pruebas HTTP
 ## Configuración para docker Puerto 8080
 ## 🐳 Docker
 
