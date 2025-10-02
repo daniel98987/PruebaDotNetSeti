@@ -35,9 +35,9 @@ namespace TranslatorJsonAndXml.Repositories
             </soapenv:Body>
         </soapenv:Envelope>";
             var content = new StringContent(xmlRequest, Encoding.UTF8, "text/xml");
-
-            var response = await _httpClient.PostAsync("https://pruebanetjsontoxml.free.beeceptor.com/serviceXml", content);
+            var response = await _httpClient.PostAsync("https://smb2b095807450.free.beeceptor.com", content);
             return await response.Content.ReadAsStringAsync();
+
         }
 
         public Task<PedidoResponse> EnviarPedidoRespuesta(string request)
