@@ -1,6 +1,42 @@
 # TranslatorJsonAndXml Daniel Zambrano
 
-Este proyecto es una **API en ASP.NET Core 8** diseñada para traducir mensajes entre **JSON** y **XML (SOAP)**, implementando el **patrón Repository** y una estructura de carpetas limpia para mantener la separación de responsabilidades.
+Este proyecto es una **API en ASP.NET Core 8** diseñada para traducir mensajes entre **JSON** y **XML (SOAP)**, implementando el **patrón Repository** y una estructura de carpetas limpia para mantener la separación de responsabilidades,seguir el paso a paso para el archivo dockerfile.
+## Solución prueba
+SWAGGER 
+http://localhost:8080/swagger/index.html
+
+SOLUCIÓN PUNTO B (POST)
+[http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos](http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos
+)
+body - json
+{
+	"enviarPedido": {
+		"numPedido": "75630275",
+		"cantidadPedido": "1",
+		"codigoEAN": "00110000765191002104587",
+		"nombreProducto": "Armario INVAL",
+		"numDocumento": "1113987400",
+		"direccion": "CR 72B 45 12 APT 301"
+	}
+}
+SOLUCIÓN PUNTO C
+[[http://localhost:8080/api/TranslatorJsonAndXml/envioPedidos]()](http://localhost:8080/api/TranslatorJsonAndXml/enviarPedidoRespuesta)
+HEADERS Content-Type application/xml
+        Accept application/json
+BODY - RAW - XML 
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:env="http://WSDLs/EnvioPedidos/EnvioPedidosAcme">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <env:EnvioPedidoAcmeResponse>
+         <EnvioPedidoResponse>
+            <!--Optional:-->
+            <Codigo>80375472</Codigo>
+            <!--Optional:-->
+            <Mensaje>Entregado exitosamente al cliente</Mensaje>
+         </EnvioPedidoResponse>
+      </env:EnvioPedidoAcmeResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
 
 ---
 
@@ -67,4 +103,10 @@ docker build -t translator-api .
 
 ### 🔹 2. Ejecutar el contenedor
 docker run -d -p 8080:8080 --name translator-container translator-api
+
+
+
+
+
+
 
